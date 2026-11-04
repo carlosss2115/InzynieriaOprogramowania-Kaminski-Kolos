@@ -5,9 +5,12 @@ Marek Kamiński 182738 IO1 carlosss2115
 
 Jakub Kolos 180595 IO1 kolos21
 
+
+
 Tytuł projektu:
 
 OptoMed – inteligentny system rezerwacji badań wzroku i e-commerce optyczny z wirtualnym doborem oprawek.
+
 
 
 Idea i problem
@@ -24,6 +27,7 @@ Pan Jan wchodzi na platformę OptoMed i wgrywa swoje zdjęcie do modułu AI, kt�
 System automatycznie dobiera i wyświetla 5 najlepiej dopasowanych modeli oprawek.
 Jan wybiera model, a następnie za pomocą zintegrowanego kalendarza rezerwuje termin badania wzroku u optometrysty na nadchodzący wtorek.
 Efekt: Jan oszczędza czas, przychodzi na gotową godzinę, a optometrysta i salon mają od razu wstępnie wybrane oprawki przypisane do jego wizyty.
+
 
 
 Zakres funkcjonalny
