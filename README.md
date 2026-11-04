@@ -1,6 +1,7 @@
 # InzynieriaOprogramowania-Kaminski-Kolos
 Zespół:
 Marek Kamiński 182738 IO1 carlosss2115
+
 Jakub Kolos 180595 IO1 kolos21
 
 Tytuł projektu:
