@@ -3,7 +3,7 @@
 ## 1. Cel i zakres wersji v1
 * **Tytuł projektu:** OptoMed – System Zarządzania Salonem Optycznym z modułem AI.
 * **Główny odbiorca:** Pacjent poszukujący badania wzroku i doboru okularów oraz personel salonu (Optyk, Specjalista)[cite: 5].
-* **Cel v1 (w 4 zdaniach):** 
+* **Cel v1:** 
   W wersji v1 skupiamy się na uruchomieniu podstawowej ścieżki klienta, która łączy nowoczesną technologię z tradycyjną obsługą salonu optycznego. Użytkownik ma możliwość zarejestrowania się i zalogowania do systemu oraz skorzystania z modułu AI do analizy kształtu twarzy ze zdjęcia, co pozwala na automatyczne dopasowanie i wyświetlenie rekomendowanych oprawek. Ponadto pacjent może samodzielnie sprawdzić wolne terminy i zarezerwować wizytę na badanie wzroku u optometrysty[cite: 9]. Oczekiwanym efektem jest skrócenie czasu wyboru okularów oraz sprawna rezerwacja wizyty bez konieczności kontaktu telefonicznego.
 
 * **Wybrane funkcje MVP (zgodne z Lab 01):**
@@ -99,8 +99,8 @@ Baza danych opiera się na kluczowych encjach wypracowanych w poprzednim semestr
 | Etap v1 | Od czego zależy? | Osoba odpowiedzialna | Termin | Oczekiwany rezultat |
 | :--- | :--- | :--- | :--- | :--- |
 | **Cel i zakres** | Pomysł z Lab 01 | Zespół (Jakub / Marek) | Tydzień 1 | Zatwierdzony cel v1 i lista funkcji MVP |
-| **1. Widoki (GUI)** | Cel i zakres v1 | Marek Kamiński[cite: 21] | Tydzień 1/2 | Szkice widoków W01, W02, W03 |
-| **2. Struktura bazy** | Wymagania widoków | Jakub Kolos[cite: 21] | Tydzień 2 | Schemat tabel i relacji SQL dla v1 |
+| **1. Widoki (GUI)** | Cel i zakres v1 | Marek Kamiński | Tydzień 1/2 | Szkice widoków W01, W02, W03 |
+| **2. Struktura bazy** | Wymagania widoków | Jakub Kolos | Tydzień 2 | Schemat tabel i relacji SQL dla v1 |
 | **3. Funkcjonalności** | Widok i baza | Zespół | Tydzień 2/3 | Opis logiki F01, F02, F03 |
 | **Sprawdzenie spójności**| Wszystkie etupy | Zespół | Tydzień 3 | Pełna dokumentacja v1 w `docs/roadmap-v1.md` |
 
