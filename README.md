@@ -1,63 +1,47 @@
-# InzynieriaOprogramowania-Kaminski-Kolos
-Zespół:
+# OptoMed – System Zarządzania Salonem Optycznym z AI
 
-Marek Kamiński 182738 IO1 carlosss2115
+## Tytuł projektu
+OptoMed – System Zarządzania Salonem Optycznym z modułem AI do doboru oprawek i rezerwacji badań wzroku.
 
-Jakub Kolos 180595 IO1 kolos21
+## Zespół
+* **Nazwa zespołu:** Grupa 1 (Informatyka Ogólna)[cite: 4]
+* **Członkowie zespołu:**
+  1. Jakub Kolos, nr indeksu: [Wpisz numer], grupa: Laboratoryjna 1, GitHub: [@JakubKolos]
+  2. Marek Kamiński, nr indeksu: [Wpisz numer], grupa: Laboratoryjna 1, GitHub: [@MarekKaminski]
 
+## Idea i problem
+Tradycyjne salony optyczne borykają się z problemem nieefektywnej obsługi klientów, którzy tracą czas na długie oczekiwanie w kolejkach oraz skomplikowany, telefoniczny proces umawiania badań wzroku. Ponadto dobór odpowiednich oprawek bywa dla pacjentów przytłaczający ze względu na brak spersonalizowanego doradztwa i trudność w ocenie, jak dany model pasuje do rysów twarzy. Obecnie większość tych procesów opiera się na tradycyjnych metodach, takich jak wizyty stacjonarne, ręczne przeglądanie katalogów czy papierowe kartoteki, co generuje błędy i wydłuża czas obsługi. Naszym rozwiązaniem jest rozbudowa systemu **OptoMed** o zaawansowane moduły sztucznej inteligencji, które automatyzują proces wstępnego doboru oprawek na podstawie analizy kształtu twarzy ze zdjęcia użytkownika. Zintegrowany kalendarz online umożliwia błyskawiczne umawianie wizyt u optometrystów[cite: 5, 9], a cyfrowy magazyn i e-commerce spinają całą ścieżkę klienta w jeden spójny ekosystem[cite: 4, 16]. Oczekiwaną korzyścią jest pełna cyfryzacja salonu, oszczędność czasu personelu i pacjentów oraz unikalne, spersonalizowane doświadczenie zakupowe wspierane przez AI.
 
+## Użytkownicy i scenariusz
+* **Główna grupa odbiorców:** Pacjenci/Klienci poszukujący zakupu okularów i badań wzroku oraz personel salonu (Administrator, Optyk, Specjalista/Optometrysta)[cite: 5].
+* **Przykładowy scenariusz użycia:** 
+  1. Pacjent wchodzi na portal OptoMed i wgrywa swoje zdjęcie do modułu AI, który analizuje proporcje i kształt twarzy.
+  2. System automatycznie dopasowuje i proponuje najlepiej pasujące oprawki z bazy produktów[cite: 16].
+  3. Użytkownik wybiera model, a następnie za pomocą zintegrowanego kalendarza rezerwuje termin badania wzroku u optometrysty[cite: 9].
+  4. Efekt: Pacjent pojawia się na wizycie o wybranej godzinie, specjalista ma gotowy wgląd w jego profil, a proces zakupu okularów przebiega szybko i bezbłędnie[cite: 8, 9].
 
-Tytuł projektu:
+## Zakres funkcjonalny
+| ID | Funkcjonalność | Zakres |
+| :--- | :--- | :--- |
+| **F01** | Użytkownik może zalogować się do systemu z uwzględnieniem ról (Pacjent, Optyk, Specjalista, Administrator)[cite: 5, 8]. | MVP |
+| **F02** | Użytkownik może wgrać zdjęcie w celu automatycznej analizy kształtu twarzy i uzyskania rekomendacji oprawek przez AI. | MVP |
+| **F03** | Pacjent może sprawdzić dostępne terminy i zarezerwować/odwołać wizytę u optometrysty[cite: 9]. | MVP |
+| **F04** | Optyk może zarządzać bazą produktową i stanami magazynowymi (oprawy, soczewki)[cite: 4, 7]. | MVP |
+| **F05** | Specjalista (optometrysta) może prowadzić kartotekę pacjentów, historię badań oraz wystawiać recepty[cite: 8, 9]. | MVP |
+| **F06** | Użytkownik może sprawdzić aktualny status swojego zlecenia/zamówienia online[cite: 9]. | Rozszerzenie |
+| **F07** | System obsługuje płatności elektroniczne oraz automatyczne powiadomienia SMS[cite: 5, 8]. | Rozszerzenie |
 
-OptoMed – inteligentny system rezerwacji badań wzroku i e-commerce optyczny z wirtualnym doborem oprawek.
+## Poza zakresem
+1. Integracja z systemami Narodowego Funduszu Zdrowia (NFZ) w celu automatycznego rozliczania refundacji na szkła korekcyjne w pierwszej wersji aplikacji.
+2. Zaawansowany, dedykowany moduł księgowy dla wielu oddziałów firmy (wersja opiera się na uproszczonym fakturowaniu i ewidencji zamówień)[cite: 15].
 
+## Organizacja współpracy
+* **Wstępny podział zadań:** 
+  * *Jakub Kolos:* Architektura techniczna, modelowanie danych (ERD, diagramy klas)[cite: 21], implementacja logiki backendowej i bazy danych.
+  * *Marek Kamiński:* Analiza biznesowa, specyfikacja wymagań, makiety interfejsów (GUI) oraz implementacja warstwy widoku i modułu AI[cite: 21].
+* **Sposób kontaktu:** Bieżąca komunikacja zespołu realizowana jest przez platformę LaboChat.com[cite: 2] oraz dedykowany kanał roboczy.
+* **Zasada aktualizacji:** Wszelkie zmiany w kodzie i dokumentacji są zatwierdzane poprzez commity w repozytorium GitHub, a kluczowe decyzje projektowe odnotowywane w zadaniach na LaboChat.com[cite: 2].
 
-
-Idea i problem
-
-Tradycyjne salony optyczne często borykają się z problemem nieefektywnej obsługi klientów, którzy tracą czas na długie oczekiwanie oraz skomplikowany proces umawiania badań wzroku. Ponadto dobór odpowiednich oprawek bywa dla pacjentów przytłaczający ze względu na brak spersonalizowanego doradztwa i trudność w ocenie, jak dany model pasuje do rysów twarzy. Obecnie większość tych procesów opiera się na archaicznych metodach – wizytach stacjonarskich, telefonach do rejestracji oraz manualnym przymierzaniu dziesiątek par okularów bez wsparcia technologicznego. Taki stan rzeczy generuje frustrację, wydłuża czas obsługi oraz ogranicza dostęp do szybkich usług optycznych. Naszym rozwiązaniem jest OptoMed – innowacyjna platforma łącząca e-commerce optyczny z systemem rezerwacji wizyt oraz zaawansowanymi modułami sztucznej inteligencji. Aplikacja wykorzystuje algorytmy AI do analizy kształtu twarzy ze zdjęcia, co pozwala na precyzyjny i szybki dobór idealnych oprawek okularowych. Zintegrowany kalendarz online umożliwia natomiast błyskawiczne umawianie i zarządzanie wizytami u optometrystów w dogodnym dla klienta terminie. Oczekiwaną korzyścią z wdrożenia projektu jest pełna cyfryzacja i automatyzacja ścieżki klienta, co drastycznie skraca czas zakupu i podnosi satysfakcję użytkowników. Dla salonów optycznych OptoMed oznacza z kolei lepsze zarządzanie zasobami, redukcję obciążenia personelu oraz nowoczesny kanał dotarcia do nowych pacjentów.
-
-
-
-Użytkownicy i scenariusz
-
-Główna grupa odbiorców: Klienci i pacjenci poszukujący korekcji wzroku, nowych okularów lub szybkiego dostępu do badania optometrycznego oraz personel salonu (optometryści i obsługa).
-Przykładowy scenariusz użycia:
-Pan Jan wchodzi na platformę OptoMed i wgrywa swoje zdjęcie do modułu AI, który analizuje kształt jego twarzy.
-System automatycznie dobiera i wyświetla 5 najlepiej dopasowanych modeli oprawek.
-Jan wybiera model, a następnie za pomocą zintegrowanego kalendarza rezerwuje termin badania wzroku u optometrysty na nadchodzący wtorek.
-Efekt: Jan oszczędza czas, przychodzi na gotową godzinę, a optometrysta i salon mają od razu wstępnie wybrane oprawki przypisane do jego wizyty.
-
-
-
-Zakres funkcjonalny
-
-F01: Użytkownik może przeglądać katalog oprawek okularowych z filtrami (kształt, marka, cena).	MVP  
-
-F02:	Użytkownik może wgrać zdjęcie w celu automatycznej analizy rysów twarzy przez algorytm AI.	MVP  
-
-F03:	Użytkownik może sprawdzić dostępne terminy i zarezerwować wizytę na badanie wzroku u optometrysty.	MVP  
-
-F04:	Użytkownik może dodać wybrane oprawki do koszyka i opłacić zamówienie online.	Rozszerzenie
-
-F05:	Użytkownik może zarządzać (przeglądać/anulować) swoimi nadchodzącymi rezerwacjami.	MVP
-
-F06:	Personel salonu ma dostęp do panelu administracyjnego do zarządzania grafikiem wizyt i statusem zamówień.	Rozszerzenie
-
-
-
-
-Poza zakresem
-
-1.Wewnętrzny system fakturowania i zaawansowana księgowość salonu (wersja pierwsza obsługuje jedynie proste podsumowanie zamówienia).
-
-2.Integracja z zewnętrznymi bazami danych NFZ w celu automatycznego rozliczania refundacji na szkła i okulary.
-
-
-
-
-Odnośniki
-
-GitHub: https://github.com/carlosss2115/InzynieriaOprogramowania-Kaminski-Kolos
-
-LaboChat: mke.labochat.com
+## Odnośniki
+* **Repozytorium GitHub:** [Wpisz link do swojego repozytorium][cite: 2]
+* **Przestrzeń projektu (LaboChat.com):** [Wpisz link do LaboChat.com][cite: 2]
