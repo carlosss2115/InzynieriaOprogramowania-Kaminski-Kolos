@@ -38,11 +38,15 @@ F05:	Użytkownik może zarządzać (przeglądać/anulować) swoimi nadchodzącym
 F06:	Personel salonu ma dostęp do panelu administracyjnego do zarządzania grafikiem wizyt i statusem zamówień.	Rozszerzenie
 
 
+
+
 Poza zakresem
 
 1.Wewnętrzny system fakturowania i zaawansowana księgowość salonu (wersja pierwsza obsługuje jedynie proste podsumowanie zamówienia).
 
 2.Integracja z zewnętrznymi bazami danych NFZ w celu automatycznego rozliczania refundacji na szkła i okulary.
+
+
 
 
 Odnośniki
