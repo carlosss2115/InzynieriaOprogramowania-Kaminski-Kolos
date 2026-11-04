@@ -25,21 +25,28 @@ Efekt: Jan oszczędza czas, przychodzi na gotową godzinę, a optometrysta i sal
 
 Zakres funkcjonalny
 
-F01: Użytkownik może przeglądać katalog oprawek okularowych z filtrami (kształt, marka, cena).	MVP
-F02:	Użytkownik może wgrać zdjęcie w celu automatycznej analizy rysów twarzy przez algorytm AI.	MVP
-F03:	Użytkownik może sprawdzić dostępne terminy i zarezerwować wizytę na badanie wzroku u optometrysty.	MVP
+F01: Użytkownik może przeglądać katalog oprawek okularowych z filtrami (kształt, marka, cena).	MVP  
+
+F02:	Użytkownik może wgrać zdjęcie w celu automatycznej analizy rysów twarzy przez algorytm AI.	MVP  
+
+F03:	Użytkownik może sprawdzić dostępne terminy i zarezerwować wizytę na badanie wzroku u optometrysty.	MVP  
+
 F04:	Użytkownik może dodać wybrane oprawki do koszyka i opłacić zamówienie online.	Rozszerzenie
+
 F05:	Użytkownik może zarządzać (przeglądać/anulować) swoimi nadchodzącymi rezerwacjami.	MVP
+
 F06:	Personel salonu ma dostęp do panelu administracyjnego do zarządzania grafikiem wizyt i statusem zamówień.	Rozszerzenie
 
 
 Poza zakresem
 
 1.Wewnętrzny system fakturowania i zaawansowana księgowość salonu (wersja pierwsza obsługuje jedynie proste podsumowanie zamówienia).
+
 2.Integracja z zewnętrznymi bazami danych NFZ w celu automatycznego rozliczania refundacji na szkła i okulary.
 
 
 Odnośniki
 
 GitHub: https://github.com/carlosss2115/InzynieriaOprogramowania-Kaminski-Kolos
+
 LaboChat: mke.labochat.com
