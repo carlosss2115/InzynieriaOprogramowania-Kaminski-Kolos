@@ -1,10 +1,12 @@
 # InzynieriaOprogramowania-Kaminski-Kolos
 Zespół:
+
 Marek Kamiński 182738 IO1 carlosss2115
 
 Jakub Kolos 180595 IO1 kolos21
 
 Tytuł projektu:
+
 OptoMed – inteligentny system rezerwacji badań wzroku i e-commerce optyczny z wirtualnym doborem oprawek.
 
 
