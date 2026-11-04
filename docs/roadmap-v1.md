@@ -1,96 +1,81 @@
 # Mapa Projektu (Roadmap) – Iteracja v1: OptoMed
 
 ## 1. Cel i zakres wersji v1
-* **Tytuł projektu:** OptoMed – System Zarządzania Salonem Optycznym z modułem AI.
-* **Główny odbiorca:** Pacjent poszukujący badania wzroku i doboru okularów oraz personel salonu (Optyk, Specjalista)[cite: 5].
-* **Cel v1:** 
-  W wersji v1 skupiamy się na uruchomieniu podstawowej ścieżki klienta, która łączy nowoczesną technologię z tradycyjną obsługą salonu optycznego. Użytkownik ma możliwość zarejestrowania się i zalogowania do systemu oraz skorzystania z modułu AI do analizy kształtu twarzy ze zdjęcia, co pozwala na automatyczne dopasowanie i wyświetlenie rekomendowanych oprawek. Ponadto pacjent może samodzielnie sprawdzić wolne terminy i zarezerwować wizytę na badanie wzroku u optometrysty[cite: 9]. Oczekiwanym efektem jest skrócenie czasu wyboru okularów oraz sprawna rezerwacja wizyty bez konieczności kontaktu telefonicznego.
+* **Tytuł projektu:** OptoMed – Zintegrowany system rezerwacji badań wzroku i e-commerce optyczny salonu „Opto-med”.
+* **Główny odbiorca:** Pacjent poszukujący zakupu okularów i badania wzroku oraz personel salonu (Optyk, Specjalista, Administrator).
+* **Cel v1 (w 4 zdaniach):** 
+  W wersji v1 skupiamy się na uruchomieniu podstawowej ścieżki klienta oraz personelu salonu optycznego. Użytkownik ma możliwość zarejestrowania się i zalogowania do systemu oraz przeglądania katalogu oprawek okularowych i produktów w sklepie internetowym. Ponadto pacjent może sprawdzić wolne terminy i zarezerwować lub odwołać wizytę na badanie wzroku u optometrysty. Oczekiwanym efektem jest pełna cyfryzacja rezerwacji wizyt, usprawnienie obsługi klientów oraz ułatwienie pracownikom zarządzania magazynem i kartotekami.
 
-* **Wybrane funkcje MVP (zgodne z Lab 01):**
-  * **F01:** Użytkownik może zalogować się do systemu z uwzględnieniem ról (Pacjent, Optyk, Specjalista)[cite: 5, 8].
-  * **F02:** Użytkownik może wgrać zdjęcie w celu automatycznej analizy rysów twarzy i uzyskania rekomendacji oprawek przez AI.
-  * **F03:** Pacjent może sprawdzić dostępne terminy i zarezerwować wizytę u optometrysty[cite: 9].
-  * **F04:** Optyk może przeglądać i zarządzać bazą oprawek okularowych w magazynie[cite: 4, 7].
-  * **F05:** Specjalista (optometrysta) może prowadzić kartotekę pacjentów i historię badań[cite: 8, 9].
+* **Wybrane funkcje MVP:**
+  * **F01:** Użytkownik może zalogować się do systemu z uwzględnieniem ról (Pacjent, Optyk, Specjalista, Administrator).
+  * **F02:** Użytkownik może przeglądać katalog oprawek okularowych i produktów w sklepie internetowym.
+  * **F03:** Pacjent może sprawdzić dostępne terminy i zarezerwować/odwołać wizytę u optometrysty.
+  * **F04:** Optyk może zarządzać bazą produktową i stanami magazynowymi (oprawy, soczewki).
+  * **F05:** Specjalista (optometrysta) może prowadzić kartotekę pacjentów, historię badań oraz wystawiać recepty.
 
-* **Odkładamy do v2:** Płatności elektroniczne online, zaawansowany e-commerce (koszyk zakupowy, dostawy kurierskie) oraz powiadomienia SMS[cite: 5, 8].
+* **Odkładamy do v2:** Płatności elektroniczne online, koszyk zakupowy i finalizacja zamówień e-commerce oraz automatyczne powiadomienia SMS.
 
 ---
 
 ## 2. Widoki (Jak to ma wyglądać?)
-W v1 projektujemy 3 główne widoki interfejsu (GUI):
+W v1 projektujemy główne widoki interfejsu (GUI):
 
-* **W01: Strona Główna / Panel Startowy (Dla Gościa / Pacjenta)**
-  * **Cel:** Szybkie wprowadzenie do aplikacji oraz zachęcenie do skorzystania z AI lub rezerwacji wizyty.
-  * **Elementy:** Nagłówek, menu nawigacyjne, baner zachęcający do testu AI („Dobierz oprawki ze zdjęciem”), przycisk rezerwacji wizyty, stopka.
-  * **Dane:** Brak danych dynamicznych (widok statyczny/wizerunkowy).
-  * **Przejścia:** Kliknięcie w test AI przenosi do W02; kliknięcie w rezerwację do W03.
+* **W01: Strona Główna i Katalog Produktów (Dla Gościa / Pacjenta)**
+  * **Cel:** Prezentacja oferty salonu oraz przeglądanie dostępnych oprawek okularowych.
+  * **Elementy:** Menu nawigacyjne (kategorie produktów), wyszukiwarka, siatka produktów (zdjęcie, nazwa, cena), odnośnik do logowania i rezerwacji wizyt.
+  * **Dane wyświetlane:** Tabela `Okulary` (marka, model, typ_szkieł, cena).
 
-* **W02: Moduł Analizy AI i Dopasowania Opraw (Dla Pacjenta)**
-  * **Cel:** Wgranie zdjęcia twarzy i prezentacja dopasowanych przez algorytm oprawek.
-  * **Elementy:** Formularz przesyłania pliku (zdjęcie), przycisk „Analizuj”, sekcja wyników z listą pasujących modeli okularów (zdjęcie, marka, model, cena)[cite: 16].
-  * **Dane wejściowe:** Plik graficzny (zdjęcie użytkownika).
-  * **Dane wyświetlane:** Tabela/lista `Okulary` (marka, model, typ_twarzy, cena)[cite: 16].
-  * **Komunikaty:** 
-    * *Poprawne działanie:* Wyświetlenie komunikatów o dopasowaniu i listy 3-5 oprawek.
-    * *Błąd:* „Nieprawidłowy format pliku. Wgraj zdjęcie w formacie JPG lub PNG.”
+* **W02: Formularz Logowania i Rejestracji (Dla Użytkowników)**
+  * **Cel:** Uwierzytelnianie użytkownika w systemie i nadanie odpowiednich uprawnień.
+  * **Elementy:** Pola E-mail (login) i Hasło, przycisk „Zaloguj się”, opcja „Pokaż” hasło oraz odnośniki do rejestracji i odzyskiwania dostępu.
+  * **Dane wejściowe:** Login, hasło.
 
 * **W03: Kalendarz i Rezerwacja Wizyty (Dla Pacjenta)**
-  * **Cel:** Wybór dogodnego terminu badania wzroku u optometrysty[cite: 9].
-  * **Elementy:** Widok kalendarza miesięcznego/tygodniowego, lista dostępnych godzin, formularz potwierdzenia rezerwacji, przycisk „Potwierdź rezerwację”.
-  * **Dane wprowadzane:** Data, godzina, ID pacjenta, ID specjalisty.
-  * **Dane wyświetlane:** Dostępne sloty czasowe z tabeli `Grafik`/`Wizyty`[cite: 12].
+  * **Cel:** Wybór dogodnego terminu badania wzroku u optometrysty.
+  * **Elementy:** Widok kalendarza, lista dostępnych godzin u specjalisty, formularz potwierdzenia rezerwacji.
+  * **Dane wprowadzane/wyświetlane:** Data, godzina, przypisany pacjent i specjalista.
   * **Komunikaty:**
-    * *Poprawne działanie:* „Wizyta została pomyślnie zarezerwowana na dzień [Data] o godzinie [Godzina].”
-    * *Błąd (zajęty termin):* „Wybrany termin jest już niedostępny. Wybierz inną godzinę.”
+    * *Poprawne działanie:* „Wizyta została pomyślnie zarezerwowana.”
+    * *Błąd:* „Wybrany termin jest zajęty. Wybierz inną godzinę.”
 
 ---
 
 ## 3. Struktura bazy danych (Jakie dane zapisujemy?)
-Baza danych opiera się na kluczowych encjach wypracowanych w poprzednim semestrze[cite: 16]:
+Baza danych opiera się na relacjach zaprojektowanych w poprzednim semestrze:
 
 * **Tabela `Użytkownik`**
   * `id_użytkownika` (INT, PK)
-  * `login` (VARCHAR(50))[cite: 16]
-  * `haslo` (VARCHAR(255))[cite: 16]
-  * `rola` (VARCHAR(20)) – np. Pacjent, Optyk, Specjalista[cite: 5, 8]
+  * `login` / `email` (VARCHAR)
+  * `haslo` (VARCHAR)
+  * `rola` (VARCHAR) – np. Pacjent, Optyk, Specjalista, Administrator
 * **Tabela `Pacjent`**
   * `id_pacjenta` (INT, PK)
   * `id_użytkownika` (INT, FK)
-  * `imie`, `nazwisko`, `telefon`, `email`[cite: 16]
+  * `imie`, `nazwisko`, `telefon`, `adres`
 * **Tabela `Okulary`**
   * `id_okularow` (INT, PK)
-  * `marka`, `model`, `typ_twarzy` (VARCHAR)[cite: 16]
-  * `cena` (DECIMAL)[cite: 16]
-* **Tabela `Wizyty`**
-  * `id_wizyty` (INT, PK)
-  * `id_pacjenta` (INT, FK)
-  * `data_czas` (DATETIME)
-  * `status` (VARCHAR(50)) – np. Zaplanowana, Odwołana, Zakończona
-
-*(Relacje: Jeden użytkownik/pacjent może mieć wiele wizyt[cite: 12]; oprawki są niezależnym katalogiem przeglądanym podczas analizy AI).*
+  * `marka`, `model`, `typ_szkiel`, `cena` (DECIMAL)
+* **Tabela `Wizyty` / `Zamowienie`**
+  * Powiązania dla rezerwacji terminów i ewidencji zleceń okularowych.
 
 ---
 
 ## 4. Opis funkcjonalności (Co i jak ma działać?)
 
-* **F01 - Logowanie do systemu**[cite: 5, 8]
-  * *Użytkownik:* Gość / Pracownik / Pacjent.
-  * *Działanie:* Wprowadza login i hasło w formularzu, system weryfikuje dane w tabeli `Użytkownik` i przekierowuje do odpowiedniego pulpitu[cite: 21].
-  * *Widok:* Formularz logowania.
-  * *Warunek poprawności:* Hash hasła w bazie zgadza się z podanym; w przypadku błędu system wyświetla komunikat „Nieprawidłowy login lub hasło”[cite: 8].
+* **F01 - Logowanie do systemu**
+  * *Użytkownik:* Dowolna rola (Pacjent, Optyk, Specjalista, Administrator).
+  * *Działanie:* Wprowadza e-mail i hasło; system weryfikuje dane i przekierowuje do właściwego panelu.
+  * *Warunek poprawności:* Zgodność hasła (hash) w bazie; przy błędzie komunikat o nieprawidłowych danych.
 
-* **F02 - Dobór oprawek przez AI**
-  * *Użytkownik:* Pacjent.
-  * *Działanie:* Wgrywa zdjęcie w widoku W02, algorytm analizuje cechy twarzy i filtruje tabele `Okulary` na podstawie pola `typ_twarzy`[cite: 16].
-  * *Widok:* W02 (Moduł AI).
-  * *Warunek poprawności:* Zdjęcie zawiera wykrytą twarz, a zapytanie SQL zwraca minimum 1 pasujący model oprawek z bazy.
+* **F02 - Przeglądanie katalogu oprawek**
+  * *Użytkownik:* Klient / Pacjent.
+  * *Działanie:* Wyświetlanie listy dostępnych oprawek z bazy danych w widoku sklepu.
+  * *Warunek poprawności:* Poprawne pobranie rekordów z tabeli `Okulary`.
 
-* **F03 - Rezerwacja wizyty**[cite: 9]
+* **F03 - Rezerwacja wizyty u optometrysty**
   * *Użytkownik:* Pacjent.
-  * *Działanie:* Wybiera wolny termin w kalendarzu (W03), system zapisuje rekord w tabeli `Wizyty`.
-  * *Widok:* W03 (Kalendarz wizyt)[cite: 12].
-  * *Warunek poprawności:* Wybrana data i godzina nie są zajęte przez innego pacjenta (brak konfliktu w bazie danych).
+  * *Działanie:* Wybór wolnego terminu w kalendarzu i zapisanie rezerwacji w systemie.
+  * *Warunek poprawności:* Wybrany termin nie koliduje z inną wizytą w bazie danych.
 
 ---
 
@@ -107,12 +92,8 @@ Baza danych opiera się na kluczowych encjach wypracowanych w poprzednim semestr
 ---
 
 ## 6. Kierunek kolejnej iteracji (v2)
-W wersji v2 planujemy rozwinięcie systemu o dwa kluczowe elementy e-commerce:
-1. **Koszyk i moduł zamówień internetowych:** Umożliwienie bezpośredniego zakupu dobranych przez AI okularów online.
-   * *Zmiana w widokach:* Dodanie widoku koszyka i formularza płatności (wzorowanego na makietach z poprzedniego semestru)[cite: 18].
-   * *Zmiana w danych:* Wykorzystanie tabel `Zamowienie`, `Faktura` i `Dostawa` z poprzedniej dokumentacji[cite: 16].
-   * *Zmiana w funkcjach:* Obsługa płatności elektronicznych i generowanie zlecenia warsztatowego dla optyka[cite: 4, 8].
-2. **Automatyczne powiadomienia SMS:** Wysyłanie przypomnień o zbliżającej się wizycie do pacjenta.
-   * *Zmiana w widokach:* Brak zmian w GUI (funkcja w tle).
-   * *Zmiana w danych:* Dodanie pola statusu powiadomienia w tabeli `Wizyty`.
-   * *Zmiana w funkcjach:* Integracja z zewnętrzną bramką SMS po pomyślnym zarezerwowaniu terminu (F03).
+W wersji v2 planujemy rozwinięcie systemu o procesy e-commerce oraz automatyzację:
+1. **Koszyk zakupowy i zamówienia:** Umożliwienie dodawania okularów do koszyka i składania zamówień online.
+   * *Zmiana w widokach:* Dodanie widoku koszyka i formularza danych dostawy.
+   * *Zmiana w danych:* Wykorzystanie tabel `Zamowienie`, `Faktura` i `Dostawa`.
+2. **Powiadomienia SMS dla pacjentów:** Automatyczne wysyłanie wiadomości z przypomnieniem o zarezerwowanej wizycie.
