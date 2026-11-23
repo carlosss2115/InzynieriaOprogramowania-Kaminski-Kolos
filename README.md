@@ -44,4 +44,4 @@ Tradycyjne salony optyczne borykają się z problemem nieefektywnej obsługi kli
 
 ## Odnośniki
 - **Repozytorium GitHub:** https://github.com/carlosss2115/InzynieriaOprogramowania-Kaminski-Kolos
-- **Przestrzeń projektu (LaboChat.com):** make.labochat.com
+- **Przestrzeń projektu (LaboChat.com):** mke.labochat.com
