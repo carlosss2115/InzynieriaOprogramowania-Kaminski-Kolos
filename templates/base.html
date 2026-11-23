@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}OptoMed – System Salonów Optycznych{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <a href="{{ url_for('index') }}" class="brand">
+      OPTO-MED
+      <small>SALONY OKULISTYCZNO-OPTYCZNE (OptoMed v1)</small>
+    </a>
+    <nav class="nav-links">
+      <a href="{{ url_for('index') }}">W01: Katalog produktów</a>
+      <a href="{{ url_for('wizyty') }}">W03: Rezerwacja wizyty</a>
+      {% if current_user and current_user['rola'] in ('Optyk', 'Administrator') %}
+        <a href="{{ url_for('panel_optyka') }}">Panel Optyka (F04)</a>
+      {% endif %}
+      {% if current_user and current_user['rola'] in ('Specjalista', 'Administrator') %}
+        <a href="{{ url_for('panel_specjalisty') }}">Panel Specjalisty (F05)</a>
+      {% endif %}
+      {% if current_user %}
+        <a href="{{ url_for('wyloguj') }}" class="btn btn-secondary btn-sm">Wyloguj ({{ current_user['login'] }})</a>
+      {% else %}
+        <a href="{{ url_for('logowanie') }}" class="btn btn-sm">W02: Zaloguj / Zarejestruj</a>
+      {% endif %}
+    </nav>
+  </header>
+
+  <div class="demo-bar">
+    <span><strong>Konta demonstracyjne v1:</strong></span>
+    <a href="{{ url_for('demo_login', rola='pacjent') }}" class="btn btn-sm">Pacjent Demo #1 (Jan Kowalski)</a>
+    <a href="{{ url_for('demo_login', rola='optyk') }}" class="btn btn-sm btn-accent">Optyk</a>
+    <a href="{{ url_for('demo_login', rola='specjalista') }}" class="btn btn-sm">Specjalista (Optometrysta)</a>
+    <a href="{{ url_for('demo_login', rola='admin') }}" class="btn btn-sm btn-secondary">Administrator</a>
+    {% if current_user %}
+      <span>Aktywna rola: <strong>{{ current_user['rola'] }}</strong> ({{ current_user['login'] }})</span>
+    {% else %}
+      <span>Tryb: Gość</span>
+    {% endif %}
+  </div>
+
+  <main class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash {{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>
