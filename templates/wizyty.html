@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% block title %}Kalendarz i Rezerwacja Wizyty – OptoMed (W03){% endblock %}
+
+{% block content %}
+<div class="grid-2">
+  <div class="card">
+    <h2>Umów badanie wzroku u optometrysty</h2>
+    {% if current_pacjent %}
+      <p>Pacjent: <strong>{{ current_pacjent['imie'] }} {{ current_pacjent['nazwisko'] }}</strong> (tel. {{ current_pacjent['telefon'] }})</p>
+    {% else %}
+      <p class="badge badge-warn">Zaloguj się jako Pacjent (np. Pacjent Demo #1), aby potwierdzić rezerwację.</p>
+    {% endif %}
+
+    <form method="post" action="{{ url_for('wizyty') }}">
+      <div class="form-group">
+        <label for="oddzial">Oddział salonu</label>
+        <select id="oddzial" name="oddzial" required>
+          {% for o in oddzialy %}
+            <option value="{{ o }}">{{ o }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="specjalista">Specjalista (Optometrysta)</label>
+        <select id="specjalista" name="specjalista" required>
+          {% for s in specjalisci %}
+            <option value="{{ s }}">{{ s }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="poczatek">Data i godzina rozpoczęcia</label>
+        <input type="datetime-local" id="poczatek" name="poczatek" required>
+      </div>
+
+      <div class="form-group">
+        <label for="koniec">Data i godzina zakończenia</label>
+        <input type="datetime-local" id="koniec" name="koniec" required>
+      </div>
+
+      <button type="submit" class="btn">Potwierdź rezerwację</button>
+    </form>
+  </div>
+
+  <div class="card">
+    <h2>Kalendarz wizyt i lista rezerwacji</h2>
+    <p style="font-size: 0.84rem; color: #4b5563;">Terminy oznaczone jako <strong>Zaplanowana</strong> są zajęte u danego specjalisty. Odwołanie zwalnia termin.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Oddział / Specjalista</th>
+          <th>Termin</th>
+          <th>Pacjent</th>
+          <th>Status</th>
+          <th>Akcja</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for w in wizyty %}
+          <tr>
+            <td><strong>{{ w['oddzial'] }}</strong><br><small>{{ w['specjalista'] }}</small></td>
+            <td>{{ w['poczatek'] }} –<br>{{ w['koniec'] }}</td>
+            <td>{{ w['imie'] }} {{ w['nazwisko'] }}</td>
+            <td>
+              {% if w['status'] == 'Zaplanowana' %}
+                <span class="badge badge-ok">{{ w['status'] }}</span>
+              {% else %}
+                <span class="badge badge-cancel">{{ w['status'] }}</span>
+              {% endif %}
+            </td>
+            <td>
+              {% if current_pacjent and w['id_pacjenta'] == current_pacjent['id_pacjenta'] and w['status'] == 'Zaplanowana' %}
+                <form method="post" action="{{ url_for('anuluj_wizyte', id_wizyty=w['id_wizyty']) }}">
+                  <button type="submit" class="btn btn-danger btn-sm">Odwołaj</button>
+                </form>
+              {% else %}
+                —
+              {% endif %}
+            </td>
+          </tr>
+        {% else %}
+          <tr><td colspan="5">Brak zapisanych wizyt w kalendarzu.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% if current_pacjent %}
+  <div class="card">
+    <h2>Twoja historia badań i wystawione recepty (podgląd kartoteki F05)</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Data badania</th>
+          <th>Specjalista</th>
+          <th>Oko Prawe (OP: Sfera / Cyl / Oś)</th>
+          <th>Oko Lewe (OL: Sfera / Cyl / Oś)</th>
+          <th>Zalecenia</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in moje_recepty %}
+          <tr>
+            <td>{{ r['data_badania'] }}</td>
+            <td>{{ r['specjalista'] }}</td>
+            <td>{{ r['sfera_op'] }} / {{ r['cylinder_op'] }} / {{ r['os_op'] }}°</td>
+            <td>{{ r['sfera_ol'] }} / {{ r['cylinder_ol'] }} / {{ r['os_ol'] }}°</td>
+            <td>{{ r['zalecenia'] }}</td>
+          </tr>
+        {% else %}
+          <tr><td colspan="5">Brak wystawionych recept w kartotece.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endif %}
+{% endblock %}
