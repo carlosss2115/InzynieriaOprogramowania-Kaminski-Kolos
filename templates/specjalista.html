@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block title %}Panel Specjalisty – Kartoteka i Recepty (F05){% endblock %}
+
+{% block content %}
+<div class="grid-2">
+  <div class="card">
+    <h2>Wpis z badania wzroku i wystawienie recepty</h2>
+    <form method="post" action="{{ url_for('panel_specjalisty') }}">
+      <div class="form-group">
+        <label for="id_pacjenta">Pacjent z kartoteki</label>
+        <select id="id_pacjenta" name="id_pacjenta" required>
+          {% for p in pacjenci %}
+            <option value="{{ p['id_pacjenta'] }}">{{ p['nazwisko'] }} {{ p['imie'] }} ({{ p['email'] }})</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="data_badania">Data badania</label>
+        <input type="date" id="data_badania" name="data_badania" value="{{ dzisiaj }}" required>
+      </div>
+
+      <div class="form-group">
+        <label for="opis_badania">Notatka z badania optometrycznego</label>
+        <textarea id="opis_badania" name="opis_badania" rows="2" placeholder="Wynik badania ostrości wzroku i refrakcji..." required></textarea>
+      </div>
+
+      <label>Oko Prawe (OP) – Sfera / Cylinder / Oś</label>
+      <div class="grid-3 form-group">
+        <input type="text" name="sfera_op" placeholder="Sfera (np. -1.25)" required>
+        <input type="text" name="cylinder_op" placeholder="Cylinder (np. -0.50)" required>
+        <input type="text" name="os_op" placeholder="Oś (np. 90)" required>
+      </div>
+
+      <label>Oko Lewe (OL) – Sfera / Cylinder / Oś</label>
+      <div class="grid-3 form-group">
+        <input type="text" name="sfera_ol" placeholder="Sfera (np. -1.00)" required>
+        <input type="text" name="cylinder_ol" placeholder="Cylinder (np. 0.00)" required>
+        <input type="text" name="os_ol" placeholder="Oś (np. 0)" required>
+      </div>
+
+      <div class="form-group">
+        <label for="zalecenia">Zalecenia na recepcie</label>
+        <input type="text" id="zalecenia" name="zalecenia" placeholder="np. Okulary do dali z powłoką antyrefleksyjną" required>
+      </div>
+
+      <button type="submit" class="btn">Zapisz w kartotece i wystaw receptę</button>
+    </form>
+  </div>
+
+  <div class="card">
+    <h2>Zaplanowane wizyty pacjentów</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Termin</th>
+          <th>Oddział</th>
+          <th>Pacjent</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for w in wizyty %}
+          <tr>
+            <td>{{ w['poczatek'] }} – {{ w['koniec'] }}</td>
+            <td>{{ w['oddzial'] }}</td>
+            <td>{{ w['imie'] }} {{ w['nazwisko'] }}</td>
+          </tr>
+        {% else %}
+          <tr><td colspan="3">Brak zaplanowanych wizyt.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <h2 style="margin-top: 1.5rem;">Historia badań i recept w kartotece</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Data / Pacjent</th>
+          <th>Opis badania</th>
+          <th>Recepta (OP / OL)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for h in historia %}
+          <tr>
+            <td><strong>{{ h['data_badania'] }}</strong><br>{{ h['imie'] }} {{ h['nazwisko'] }}</td>
+            <td>{{ h['opis_badania'] }}<br><small><em>{{ h['zalecenia'] }}</em></small></td>
+            <td>
+              OP: {{ h['sfera_op'] }} / {{ h['cylinder_op'] }} / {{ h['os_op'] }}°<br>
+              OL: {{ h['sfera_ol'] }} / {{ h['cylinder_ol'] }} / {{ h['os_ol'] }}°
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
