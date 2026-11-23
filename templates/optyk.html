@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block title %}Panel Optyka – Magazyn i Baza Produktowa (F04){% endblock %}
+
+{% block content %}
+<div class="grid-2">
+  <div class="card">
+    <h2>Dodaj nowy produkt do katalogu</h2>
+    <form method="post" action="{{ url_for('panel_optyka') }}">
+      <input type="hidden" name="akcja" value="dodaj_produkt">
+
+      <div class="form-group">
+        <label for="marka">Marka</label>
+        <input type="text" id="marka" name="marka" placeholder="np. Vogue" required>
+      </div>
+
+      <div class="form-group">
+        <label for="model">Model</label>
+        <input type="text" id="model" name="model" placeholder="np. VO5440" required>
+      </div>
+
+      <div class="form-group">
+        <label for="kategoria">Kategoria</label>
+        <select id="kategoria" name="kategoria" required>
+          {% for kat in kategorie %}
+            <option value="{{ kat }}">{{ kat }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="typ_szkiel">Typ szkieł / opis</label>
+        <input type="text" id="typ_szkiel" name="typ_szkiel" placeholder="np. Korekcyjne progresywne" required>
+      </div>
+
+      <div class="grid-2" style="gap: 0.65rem;">
+        <div class="form-group">
+          <label for="cena">Cena (zł)</label>
+          <input type="number" id="cena" name="cena" step="0.01" min="0" required>
+        </div>
+        <div class="form-group">
+          <label for="stan_magazynowy">Początkowy stan (szt.)</label>
+          <input type="number" id="stan_magazynowy" name="stan_magazynowy" min="0" value="5" required>
+        </div>
+      </div>
+
+      <button type="submit" class="btn">Dodaj do bazy produktowej</button>
+    </form>
+  </div>
+
+  <div class="card">
+    <h2>Zarządzanie stanami magazynowymi (Tabela: Okulary)</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Produkt</th>
+          <th>Kategoria</th>
+          <th>Cena</th>
+          <th>Stan</th>
+          <th>Zmiana stanu</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for o in okulary %}
+          <tr>
+            <td><strong>{{ o['marka'] }} {{ o['model'] }}</strong><br><small>{{ o['typ_szkiel'] }}</small></td>
+            <td>{{ o['kategoria'] }}</td>
+            <td>{{ "%.2f"|format(o['cena']) }} zł</td>
+            <td>
+              {% if o['stan_magazynowy'] <= 3 %}
+                <span class="badge badge-warn">{{ o['stan_magazynowy'] }} szt.</span>
+              {% else %}
+                <span class="badge badge-ok">{{ o['stan_magazynowy'] }} szt.</span>
+              {% endif %}
+            </td>
+            <td>
+              <form method="post" action="{{ url_for('panel_optyka') }}" class="inline-row">
+                <input type="hidden" name="akcja" value="aktualizuj_stan">
+                <input type="hidden" name="id_okularow" value="{{ o['id_okularow'] }}">
+                <input type="number" name="stan_magazynowy" value="{{ o['stan_magazynowy'] }}" min="0" style="width: 72px;" required>
+                <button type="submit" class="btn btn-sm">Zapisz</button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
