@@ -1,38 +1,38 @@
-# Dziennik promptów – SZSO Opto-med v1
+# Dziennik promptów – OptoMed v1
 
-## Prompt P1 – Wybór technologii
+## Prompt P1 – Wybór technologii na podstawie `docs/roadmap-v1.md`
 **Treść promptu:**
-> Pracujemy we dwoje nad projektem System Zarządzania Salonem Optycznym (SZSO) Opto-med. Cel v1: lokalnie działająca aplikacja webowa do obsługi logowania, rezerwacji i odwoływania wizyt badania wzroku, zamawiania okularów, sprawdzania statusu zlecenia oraz zarządzania magazynem przez optyka. Widoki: W01 Strona główna i katalog okularów, W02 Logowanie, W03 Rezerwacja i lista wizyt, W04 Zamówienie (koszyk) i sprawdzanie statusu zlecenia, W05 Panel Optyka (magazyn i zlecenia). Dane: tabele `uzytkownik`, `pacjent`, `okulary`, `wizyta`, `zamowienie` powiązane kluczami głównymi i obcymi. Funkcje MVP: F01 Logowanie i obsługa ról, F02 Rezerwacja i odwołanie wizyty z kontrolą kolizji, F03 Złożenie zamówienia na okulary, F04 Sprawdzenie statusu zlecenia, F05 Zarządzanie magazynem i statusem zleceń. Nasz system operacyjny i umiejętności: Windows 11 / Linux, podstawy Pythona, HTML/CSS oraz SQL. Zaproponuj dwa proste zestawy technologii do uruchomienia lokalnie bez płatnych usług. Wyjaśnij role składników, wybierz prostszy wariant i uzasadnij go. Zwróć też listę potrzebnych narzędzi. Na tym etapie przygotuj plan.
+> Pracujemy we dwoje nad projektem OptoMed – Zintegrowany system rezerwacji badań wzroku i e-commerce optyczny salonu „Opto-med”. Cel v1: uruchomienie podstawowej ścieżki klienta oraz personelu salonu optycznego – logowanie i rejestracja z obsługą ról, przeglądanie katalogu oprawek, rezerwacja i odwoływanie wizyt na badanie wzroku u optometrysty, zarządzanie magazynem przez optyka oraz prowadzenie kartoteki badań i recept przez specjalistę (koszyk e-commerce, płatności i SMS odkładamy do v2). Widoki: W01 Strona Główna i Katalog Produktów, W02 Formularz Logowania i Rejestracji, W03 Kalendarz i Rezerwacja Wizyty (+ panele robocze Optyka i Specjalisty). Dane: tabele `uzytkownik`, `pacjent`, `okulary`, `wizyta`, `badanie_recepta`. Funkcje MVP: F01 Logowanie z rolami (Pacjent, Optyk, Specjalista, Administrator), F02 Przeglądanie katalogu oprawek, F03 Rezerwacja/odwołanie wizyty z kontrolą kolizji, F04 Zarządzanie bazą produktową i stanem magazynowym przez Optyka, F05 Kartoteka pacjentów, historia badań i wystawianie recept przez Specjalistę. Nasz system operacyjny i umiejętności: Windows 11 / Linux, podstawy Pythona, HTML/CSS i SQL. Zaproponuj dwa proste zestawy technologii do uruchomienia lokalnie bez płatnych usług. Wyjaśnij role składników, wybierz prostszy wariant i uzasadnij go. Zwróć też listę potrzebnych narzędzi. Na tym etapie przygotuj plan.
 
 **Decyzja zespołu:**
-Wybraliśmy wariant **Python 3 + Flask + SQLite (`sqlite3`) + HTML5/CSS3/JS**, ponieważ nie wymaga instalacji zewnętrznego serwera bazy danych, pozwala odwzorować architekturę Boundary–Control–Entity z dokumentacji UML i działa identycznie na systemach Windows oraz Linux.
+Wybraliśmy stos **Python 3 + Flask + SQLite (`sqlite3`) + HTML5/CSS3/JS**, ponieważ działa identycznie na Windows i Linux, nie wymaga zewnętrznego serwera DB i pozwala wprost odwzorować wzorzec Boundary–Control–Entity.
 
 ---
 
 ## Prompt P2 – Minimalny szkielet aplikacji
 **Treść promptu:**
-> Przygotuj szkielet lokalnego systemu SZSO Opto-med v1: HTML/CSS, Python 3, Flask i docelowo SQLite przez `sqlite3`. Plik startowy: `app.py`. Widoki: W01 strona główna i katalog okularów, W02 formularz logowania, W03 rezerwacja i lista wizyt, W04 koszyk zamówienia i sprawdzanie statusu zlecenia, W05 panel optyka. Na razie użyj danych przykładowych z dokumentacji (pacjent Jan Kowalski, oddziały Olsztyn Centrum i Olsztyn Zatorze, okulary Ray-Ban Aviator). Zwróć strukturę katalogów, pełną zawartość plików, `requirements.txt` i instrukcję startu. Dodaj `.gitignore` dla `.venv` i lokalnej bazy `.db`. Podaj prosty sposób sprawdzenia każdego widoku. Zachowaj zakres v1.
+> Przygotuj szkielet lokalnego systemu OptoMed v1: HTML/CSS, Python 3, Flask i docelowo SQLite przez `sqlite3`. Plik startowy: `app.py`. Widoki: W01 Strona główna i katalog oprawek, W02 Formularz logowania i rejestracji, W03 Kalendarz i rezerwacja wizyty, plus widoki dla Optyka i Specjalisty. Zachowaj zakres v1 z roadmapy (bez koszyka zakupowego, zamówień i płatności – odkładamy je do v2). Zwróć strukturę katalogów, pełną zawartość plików, `requirements.txt` i instrukcję startu. Dodaj `.gitignore` dla `.venv` i lokalnej bazy `.db`. Podaj prosty sposób sprawdzenia każdego widoku.
 
 ---
 
 ## Prompt P3 – Widoki zgodne ze szkicami
 **Treść promptu:**
-> Dopasuj istniejące widoki SZSO Opto-med do makiet z dokumentacji: W01 prezentuje nagłówek salonu optycznego oraz sekcję „POLECAMY” z kartami okularów, W02 odwzorowuje formularz logowania z polami E-mail, Hasło, przyciskiem „POKAŻ” odkrywającym hasło oraz przyciskiem „ZALOGUJ SIĘ”, W03 zawiera formularz wyboru oddziału, specjalisty, początku i końca wizyty oraz listę wizyt, W04 zawiera układ koszyka (dane, sposób dostawy, metoda płatności, podsumowanie) oraz wyszukiwarkę statusu zlecenia, W05 przedstawia tabelę magazynu i zleceń dla optyka. Dodaj spójną nawigację, etykiety pól i miejsca na komunikaty sukcesu oraz błędów (flash messages). Zachowaj obecną technologię. Podaj ścieżki i pełny kod zmienianych plików oraz sposób sprawdzenia widoków.
+> Dopasuj istniejące widoki OptoMed do opisów W01–W03 z roadmapy: W01 prezentuje menu kategorii produktów (`Korekcyjne`, `Przeciwsłoneczne`, `Soczewki kontaktowe`, `Akcesoria`), wyszukiwarkę oprawek, siatkę produktów (`marka`, `model`, `typ_szkiel`, `cena`) oraz odnośniki do logowania i rezerwacji wizyt; W02 zawiera formularz logowania (E-mail, Hasło, przycisk „Pokaż” hasło, „Zaloguj się”) oraz formularz rejestracji nowego pacjenta; W03 zawiera harmonogram zajętych godzin u specjalisty, formularz potwierdzenia rezerwacji oraz listę wizyt pacjenta z możliwością odwołania. Zastosuj komunikaty z roadmapy: „Wizyta została pomyślnie zarezerwowana.” oraz „Wybrany termin jest zajęty. Wybierz inną godzinę.”. Zachowaj obecną technologię i zwróć pełny kod zmienianych plików.
 
 ---
 
 ## Prompt P4 – Baza SQLite zamiast danych tymczasowych
 **Treść promptu:**
-> Dodaj SQLite przez `sqlite3` zgodnie z mapą projektu SZSO Opto-med: `uzytkownik(id_uzytkownika, login, haslo, rola)`, `pacjent(id_pacjenta, id_uzytkownika, imie, nazwisko, email, telefon, adres)`, `okulary(id_okularow, marka, model, rozmiar, typ_szkiel, cena, stan_magazynowy)`, `wizyta(id_wizyty, id_pacjenta, oddzial, specjalista, poczatek, koniec, status)`, `zamowienie(id_zamowienia, nr_zamowienia, id_pacjenta, id_okularow, ilosc, forma_dostawy, forma_zaplaty, kwota_calkowita, data_zamowienia, status)`. Oznacz PK i FK oraz włącz kontrolę kluczy obcych (`PRAGMA foreign_keys = ON`). Używaj wyłącznie zapytań parametryzowanych (`?`). Dodaj osobne polecenie inicjalizacji bazy (`flask --app app init-db`), fikcyjne dane z dokumentacji (pacjent demo nr 1 Jan Kowalski `jan.kowalski@email.com`, pracownik optyk `optyk@optomed.pl`, modele okularów, przykładowa wizyta i zlecenie `ZAM/2026/04/001`). Ponowny start aplikacji ma zachowywać dane. Zwróć zmienione pliki, polecenie inicjalizacji i sposób sprawdzenia zapisu.
+> Dodaj SQLite przez `sqlite3` zgodnie z mapą OptoMed v1: `uzytkownik(id_uzytkownika, login, haslo, rola)`, `pacjent(id_pacjenta, id_uzytkownika, imie, nazwisko, telefon, adres)`, `okulary(id_okularow, marka, model, kategoria, typ_szkiel, cena, stan_magazynowy)`, `wizyta(id_wizyty, id_pacjenta, oddzial, specjalista, poczatek, koniec, status)`, `badanie_recepta(id_wpisu, id_pacjenta, specjalista, data_badania, opis_badania, sfera_op, cylinder_op, os_op, sfera_ol, cylinder_ol, os_ol, zalecenia)`. Oznacz PK i FK, włącz `PRAGMA foreign_keys = ON` i używaj wyłącznie zapytań parametryzowanych (`?`). Dodaj polecenie inicjalizacji bazy (`flask --app app init-db`), przykładowe oprawki, konta ról (`Pacjent` demo nr 1 Jan Kowalski, `Optyk`, `Specjalista`, `Administrator`) oraz przykładową wizytę i wpis w kartotece. Ponowny start aplikacji ma zachowywać dane.
 
 ---
 
 ## Prompt P5 – Implementacja funkcji MVP (F01–F05)
 **Treść promptu:**
-> Na obecnym kodzie wykonaj funkcje MVP systemu SZSO Opto-med:
-> - F01: logowanie adresem e-mail i hasłem (z weryfikacją hasha) oraz szybkie logowanie demonstracyjne dla pacjenta nr 1 (Jan Kowalski) i optyka.
-> - F02: rezerwacja wizyty badania wzroku i anulowanie własnej wizyty. Sprawdzaj dane na serwerze: wymagane pola, `poczatek < koniec` oraz brak kolizji aktywnych wizyt w tym samym oddziale i u tego samego specjalisty (`nowy_poczatek < istniejacy_koniec AND nowy_koniec > istniejacy_poczatek`). Anulowanie zmienia status na `Anulowana` i zwalnia termin.
-> - F03: złożenie zamówienia na wybrane okulary przez pacjenta z walidacją dostępności w magazynie i zmniejszeniem `stan_magazynowy`.
-> - F04: sprawdzenie statusu zlecenia po numerze (np. `ZAM/2026/04/001`) dla każdego odwiedzającego oraz automatyczna lista zleceń zalogowanego pacjenta.
-> - F05: panel optyka umożliwiający zmianę stanu magazynowego okularów oraz aktualizację statusu zamówienia (np. na `Gotowe do odbioru`).
-> Zwróć pełny kod aplikacji oraz kroki weryfikacji każdej funkcji.
+> Na obecnym kodzie zaimplementuj funkcje MVP z `roadmap-v1.md`:
+> - F01: logowanie z obsługą ról (`Pacjent`, `Optyk`, `Specjalista`, `Administrator`), rejestracja nowego pacjenta oraz szybki przełącznik kont demonstracyjnych (w tym Pacjent demo nr 1).
+> - F02: przeglądanie katalogu oprawek z bazy `okulary` z filtrowaniem po kategorii i wyszukiwarką tekstową.
+> - F03: rezerwacja i odwoływanie wizyty u optometrysty z walidacją wymaganych pól, `poczatek < koniec` oraz regułą braku kolizji aktywnych wizyt (`nowy_poczatek < istniejacy_koniec AND nowy_koniec > istniejacy_poczatek`). Użyj komunikatów: „Wizyta została pomyślnie zarezerwowana.” oraz „Wybrany termin jest zajęty. Wybierz inną godzinę.”. Anulowanie zmienia status na `Anulowana` i zwalnia termin.
+> - F04: panel Optyka umożliwiający dodawanie nowych produktów (oprawy, soczewki) do tabeli `okulary` oraz aktualizację stanów magazynowych.
+> - F05: panel Specjalisty (optometrysty) umożliwiający przegląd kartoteki pacjentów, dopisywanie historii badań oraz wystawianie recept (Sfera, Cylinder, Oś, zalecenia).
+> Zwróć pełny kod wszystkich plików oraz instrukcję weryfikacji.
