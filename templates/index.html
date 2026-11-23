@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}OptoMed – Strona Główna i Katalog Produktów (W01){% endblock %}
+
+{% block content %}
+<div class="card">
+  <h1>Witamy w salonie okulistyczno-optycznym „Opto-med”</h1>
+  <p>Przeglądaj dostępny katalog oprawek okularowych i soczewek (F02) oraz zarezerwuj dogodny termin badania wzroku u optometrysty (F03).</p>
+  <p>
+    <a href="{{ url_for('wizyty') }}" class="btn">Umów badanie wzroku</a>
+    {% if not current_user %}
+      <a href="{{ url_for('logowanie') }}" class="btn btn-accent">Zaloguj się / Załóż konto pacjenta</a>
+    {% endif %}
+  </p>
+</div>
+
+<div class="card">
+  <div class="cat-bar" style="margin-bottom: 1rem;">
+    <strong>Kategorie:</strong>
+    <a href="{{ url_for('index') }}" class="{% if not wybrana_kategoria %}active{% endif %}">Wszystkie</a>
+    {% for kat in kategorie %}
+      <a href="{{ url_for('index', kategoria=kat) }}" class="{% if wybrana_kategoria == kat %}active{% endif %}">{{ kat }}</a>
+    {% endfor %}
+  </div>
+
+  <form method="get" action="{{ url_for('index') }}" class="inline-row">
+    {% if wybrana_kategoria %}
+      <input type="hidden" name="kategoria" value="{{ wybrana_kategoria }}">
+    {% endif %}
+    <input type="text" name="q" value="{{ fraza }}" placeholder="Szukaj po marce, modelu lub typie szkieł...">
+    <button type="submit" class="btn">Szukaj</button>
+    {% if fraza or wybrana_kategoria %}
+      <a href="{{ url_for('index') }}" class="btn btn-secondary">Wyczyść</a>
+    {% endif %}
+  </form>
+</div>
+
+<h2>Katalog produktów (Tabela: Okulary)</h2>
+<div class="grid-cards">
+  {% for item in okulary %}
+    <div class="card">
+      <div class="product-thumb">{{ item['marka'] }}</div>
+      <span class="badge">{{ item['kategoria'] }}</span>
+      <h3 style="margin: 0.45rem 0;">{{ item['marka'] }} {{ item['model'] }}</h3>
+      <p style="margin: 0.25rem 0;"><strong>Typ szkieł:</strong> {{ item['typ_szkiel'] }}</p>
+      <p style="margin: 0.25rem 0;"><strong>Cena:</strong> {{ "%.2f"|format(item['cena']) }} zł</p>
+      <p style="margin: 0.4rem 0 0 0;">
+        {% if item['stan_magazynowy'] > 0 %}
+          <span class="badge badge-ok">Dostępne w salonie: {{ item['stan_magazynowy'] }} szt.</span>
+        {% else %}
+          <span class="badge badge-cancel">Chwilowo brak na stanie</span>
+        {% endif %}
+      </p>
+    </div>
+  {% else %}
+    <div class="card"><p>Brak produktów spełniających kryteria wyszukiwania.</p></div>
+  {% endfor %}
+</div>
+{% endblock %}
