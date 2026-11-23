@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block title %}Logowanie i Rejestracja – OptoMed (W02){% endblock %}
+
+{% block content %}
+<div class="grid-2">
+  <div class="card">
+    <h2>Zaloguj się do swojego konta</h2>
+    <form method="post" action="{{ url_for('logowanie') }}">
+      <input type="hidden" name="tryb" value="login">
+
+      <div class="form-group">
+        <label for="email">E-mail (login)</label>
+        <input type="email" id="email" name="email" placeholder="jan.kowalski@email.com" required>
+      </div>
+
+      <div class="form-group">
+        <label for="haslo">Hasło</label>
+        <div class="inline-row">
+          <input type="password" id="haslo" name="haslo" required>
+          <button type="button" class="btn btn-secondary" onclick="togglePassword()">Pokaż</button>
+        </div>
+      </div>
+
+      <button type="submit" class="btn" style="width: 100%; background: #111827;">Zaloguj się</button>
+    </form>
+
+    <p style="margin-top: 0.85rem; font-size: 0.85rem;">
+      <a href="#odzyskiwanie" onclick="alert('W wersji demonstracyjnej v1 użyj kont testowych poniżej lub przycisku w górnym pasku.'); return false;">Nie pamiętasz hasła?</a>
+    </p>
+
+    <hr style="margin: 1rem 0; border: none; border-top: 1px solid #e5e7eb;">
+    <div style="font-size: 0.84rem; color: #374151;">
+      <strong>Konta testowe v1 (wszystkie role):</strong><br>
+      • Pacjent #1: <code>jan.kowalski@email.com</code> / <code>tajnehaslo123</code><br>
+      • Optyk: <code>optyk@optomed.pl</code> / <code>optyk123</code><br>
+      • Specjalista: <code>specjalista@optomed.pl</code> / <code>specjalista123</code><br>
+      • Administrator: <code>admin@optomed.pl</code> / <code>admin123</code>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Rejestracja nowego pacjenta</h2>
+    <p style="font-size: 0.88rem; color: #4b5563;">Nie masz konta? Zarejestruj się, aby umawiać i odwoływać wizyty na badanie wzroku.</p>
+    <form method="post" action="{{ url_for('logowanie') }}">
+      <input type="hidden" name="tryb" value="register">
+
+      <div class="grid-2" style="gap: 0.65rem;">
+        <div class="form-group">
+          <label for="imie">Imię</label>
+          <input type="text" id="imie" name="imie" required>
+        </div>
+        <div class="form-group">
+          <label for="nazwisko">Nazwisko</label>
+          <input type="text" id="nazwisko" name="nazwisko" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="reg_email">Adres e-mail</label>
+        <input type="email" id="reg_email" name="reg_email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="telefon">Telefon kontaktowy</label>
+        <input type="text" id="telefon" name="telefon" placeholder="123-456-789" required>
+      </div>
+
+      <div class="form-group">
+        <label for="adres">Adres zamieszkania</label>
+        <input type="text" id="adres" name="adres" placeholder="ul. Przykładowa 1, 10-001 Olsztyn" required>
+      </div>
+
+      <div class="form-group">
+        <label for="reg_haslo">Hasło</label>
+        <input type="password" id="reg_haslo" name="reg_haslo" required>
+      </div>
+
+      <button type="submit" class="btn btn-accent" style="width: 100%;">Załóż konto pacjenta</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  function togglePassword() {
+    const input = document.getElementById("haslo");
+    input.type = input.type === "password" ? "text" : "password";
+  }
+</script>
+{% endblock %}
