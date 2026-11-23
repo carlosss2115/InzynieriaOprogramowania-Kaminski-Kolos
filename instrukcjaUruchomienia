@@ -1,0 +1,32 @@
+# OptoMed – Zintegrowany system rezerwacji badań wzroku i e-commerce optyczny (v1)
+
+Lokalna aplikacja webowa zrealizowana w ramach przedmiotu Inżynieria Oprogramowania (Lab 03) zgodnie z mapą projektu `docs/roadmap-v1.md` (autorzy: Jakub Kolos, Marek Kamiński).
+
+## Zakres wersji v1
+* **F01:** Logowanie z obsługą ról (`Pacjent`, `Optyk`, `Specjalista`, `Administrator`) oraz rejestracja nowego pacjenta.
+* **F02:** Przeglądanie katalogu oprawek okularowych i produktów z filtrowaniem po kategoriach i wyszukiwarką.
+* **F03:** Sprawdzanie terminów oraz rezerwacja i odwoływanie wizyt na badanie wzroku u optometrysty z walidacją kolizji.
+* **F04:** Zarządzanie bazą produktową i stanami magazynowymi przez Optyka.
+* **F05:** Prowadzenie kartoteki pacjentów, historii badań i wystawianie recept przez Specjalistę.
+
+## Instalacja, inicjalizacja bazy i uruchomienie lokalne
+
+### Windows (PowerShell)
+```powershell
+py -3 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe -m flask --app app init-db
+.\.venv\Scripts\python.exe -m flask --app app run
+
+
+
+Tryb demonstracyjny i konta testowe
+W górnym pasku aplikacji umieszczono szybkie przełączniki ról demonstracyjnych, a na stronie /logowanie można zalogować się ręcznie:
+
+Użytkownik Demo #1 (Pacjent – Jan Kowalski): jan.kowalski@email.com / tajnehaslo123
+
+Optyk: optyk@optomed.pl / optyk123
+
+Specjalista (Optometrysta): specjalista@optomed.pl / specjalista123
+
+Administrator: admin@optomed.pl / admin123
